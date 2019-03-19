@@ -1,3 +1,6 @@
 {
-    "python.pythonPath": "/Users/juanpolanco/.local/share/virtualenvs/w6-apile-juan-dennis-QbJ_9NKS/bin/python"
+    "python.pythonPath": "/Users/dennisdinwiddie/.local/share/virtualenvs/w6-apile-juan-dennis--P-3oaxn/bin/python",
+    "python.linting.flake8Enabled": false,
+    "python.linting.prospectorEnabled": true,
+    "python.linting.enabled": true
 }
