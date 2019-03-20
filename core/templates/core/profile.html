@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="">
+    {% for post in posts %}
+        <div class="">
+            {% for author in post.author.all %}
+                <h1><a >{{ author.name }}</a></h1>
+            {% endfor %}
+            <div>
+                <small >{{ post.date_posted }}</small>
+            </div>
+            <h2><a class="" href="{{ book.get_absolute_url }}">{{ book.title }}</a></h2>
+            <a class="" href="{{ book.book_url }}"></a>
+        </div>
+    {% endfor %}
+  </div>
+{% endblock content %}
