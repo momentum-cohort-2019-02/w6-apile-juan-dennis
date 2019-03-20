@@ -24,7 +24,7 @@ urlpatterns = [
     path('', views.home, name='core-home'),
     path('profile/', views.profile, name='core-profile'),
     path('post/<int:pk>', views.PostDetailView.as_view(), name='core-post'),
-    path('accounts/', include('registration.backends.default.urls')),
+    path('accounts/', include('registration.backends.simple.urls')),
 
 ] 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
