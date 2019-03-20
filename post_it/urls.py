@@ -21,5 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='core-home'),
     path('profile/', views.profile, name='core-profile'),
-    path('post/<slug:slug>', views.PostDetailView.as_view(), name='core-post')
+    path('post/<int:pk>', views.PostDetailView.as_view(), name='core-post')
 ]

@@ -18,3 +18,4 @@ def profile(request):
 
 class PostDetailView(generic.DetailView):
     model = Post
+    template_name = 'core/post_detail.html'
