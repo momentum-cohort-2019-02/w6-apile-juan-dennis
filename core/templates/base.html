@@ -1,27 +1,42 @@
 {% load static %}
-<!DOCTYPE>
+<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css" />
 
-    {% comment %} <link rel="stylesheet" type="text/css" href="{% static 'core/main.css' %}"> {% endcomment %}
+    {% comment %}
+    <link rel="stylesheet" type="text/css" href="{% static 'core/main.css' %}"> {% endcomment %}
     {% block meta %}{% endblock %}
 </head>
+
 <body>
-    <header> 
+    <header>
         <nav class="ba ma1 flex flex-wrap">
             <div class="ba flex flex-wrap ma2 pa2">
                 <h1 class="ma2 pa2">Juanis</h1>
                 <a class="link black bg-animate hover-bg-blue mv3 ma2 pa2" href="{% url "core-home" %}">Home</a>
             </div>
             <div class="fr mv3 ma2 pa2">
-                <h3>Login</h3>
+                <div class="flex flex-wrap items-center pa2 ma2">
+                    {% if request.user.is_authenticated %}
+                    <div class="mv2">
+                        <a class="pa1 ma1 link black bg-animate hover-bg-white">{{ user.username }}</a>
+                    </div>
+                    <a class="pa1 ma1 link black bg-animate hover-bg-white" href="{% url 'auth_logout' %}">Logout</a>
+                    {% else %}
+                    <a class="pa1 ma1 link black bg-animate hover-bg-white" href="{% url 'auth_login' %}">Sign Up /
+                        Login</a>
+                    {% endif %}
+                </div>
+
             </div>
         </nav>
     </header>
-        {% block content %}{% endblock %}
-  </body>
+    {% block content %}{% endblock %}
+</body>
+
 </html>
