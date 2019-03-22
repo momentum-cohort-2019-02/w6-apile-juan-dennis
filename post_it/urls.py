@@ -23,8 +23,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='core-home'),
     path('profile/', views.profile, name='core-profile'),
-    path('post/<int:pk>', views.PostDetailView.as_view(), name='core-post'),
+    path('post/<int:pk>', views.post, name='core-post'),
     path('accounts/', include('registration.backends.default.urls')),
+    path('createpost/', views.post_new, name='post_new'),
+    path('post/<int:pk>/createcomment/', views.create_comment, name='create_comment')
 
 ] 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

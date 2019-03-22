@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="">
+    {% if request.user.is_authenticated %}
+<h2>New Post</h2>
+<form method="POST">
+    <input type="text">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit" class="save btn btn-default">Publish</button>
+    {% else %}
+    <p> To make a Post Login or Register! </p>
+    <a class="pa1 ma1 link black bg-animate hover-bg-white" href="{% url 'auth_login' %}">Sign Up /
+        Login</a>
+
+    {% endif %}
+
+</form>
+
+</div>
+
+{% endblock content %}
