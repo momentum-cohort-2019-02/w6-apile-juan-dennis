@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth import get_user_model
+from django.db.models import Count
 
 # Create your models here.
 # Comments belong to a user, the author, and a post.
@@ -15,20 +16,28 @@ class Post(models.Model):
     date_posted = models.DateTimeField(
         'Date Published', auto_now_add=True, null=True)
     date_updated = models.DateTimeField(null=True, auto_now=True)
-    votes = models.ManyToManyField(
-        to='Profile', related_name='posts', blank=True)
     url = models.URLField(max_length=250, null=True)
 
-    # slug = AutoSlugField(unique=True, populate_from="title", blank=True, null=True)
+    # vote = models.ManyToManyField('Profile', related_name='post_votes')
 
     def __str__(self):
         return self.title
 
-    class Meta:
-        ordering = ['-date_posted']
-
     def get_absolute_url(self):
         return reverse("core-post", args=(self.pk, ))
+
+
+class Vote(models.Model):
+    post = models.ForeignKey(
+        Post,
+        on_delete=models.CASCADE,
+        null=True,
+        related_name='my_post_votes')
+    profile = models.ForeignKey(
+        'Profile',
+        on_delete=models.CASCADE,
+        null=True,
+        related_name="my_profile_votes")
 
 
 class Profile(models.Model):
@@ -38,6 +47,9 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
 
+    def get_absolute_url(self):
+        return reverse("core-profile", args=(self.pk, ))
+
 
 class Comment(models.Model):
     user_comment = models.TextField(null=True, blank=True)
@@ -45,15 +57,12 @@ class Comment(models.Model):
     edited_on = models.DateTimeField(auto_now=True)
     post = models.ForeignKey(
         Post, related_name="comments_post", on_delete=models.CASCADE)
-    vote = models.ManyToManyField(to="Profile", related_name="comments_vote")
     author = models.ForeignKey(
         Profile,
         related_name="comments_author",
         on_delete=models.PROTECT,
     )
+    vote = models.ManyToManyField('Profile', related_name='comment_votes')
 
     def __str__(self):
         return self.user_comment
-
-
-# votes are many to many

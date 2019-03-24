@@ -22,9 +22,12 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='core-home'),
-    path('profile/', views.profile, name='core-profile'),
+    path(
+        'profile/<int:pk>',
+        views.ProfileListView.as_view(),
+        name='core-profile'),
     path('post/<int:pk>', views.PostDetailView.as_view(), name='core-post'),
-    path('accounts/', include('registration.backends.default.urls')),
-
-] 
+    path('post/vote/<int:pk>', views.vote_on_post, name='core-post-vote'),
+    path('accounts/', include('registration.backends.simple.urls')),
+]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -3,6 +3,19 @@
   <div class="">
     {% for post in posts %}
         <div class="ma2 pa2 ba ">
+            <div>
+            <form action="{% url 'core-post-vote' pk=post.pk %}" method="POST">
+            {% csrf_token %}
+                <button type="submit">
+                {{ post.my_post_votes.all.count }}
+                {% if post.my_post_votes.all.count > 0 %}
+                    <i class="fas fa-arrow-up bg-blue"></i>
+                {% else %}
+                    <i class="fas fa-arrow-up bg-red"></i>
+                </button>
+                {% endif %}
+            </form>
+            </div>
             <h2><a target="_blank" class="f2 underline" href="{{ post.url }}">{{ post.title }}</a></h2>
                 <div class="flex flex-wrap ma0 pa0">
                     <h4 class="ma0 ph1 f5"><a >{{ post.author.user.username }}</a></h4>
