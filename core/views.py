@@ -5,20 +5,26 @@ from .models import Profile, Post, Vote, Comment
 from django.views.decorators.http import require_http_methods
 from django.http import Http404
 from .forms import PostForm, CommentForm
-from .import forms
+from . import forms
 
 # Create your views here.
 
 
 def home(request):
+
     context = {'post': Post.objects.all()}
-    return render(request, 'core/index.html', context)
+    return render(request, 'index.html', context)
+
+
+# class HomeView(generic.DetailView):
+#     model = Post
+#     template_name = 'core/index.html'
+
 
 def post(request, pk):
     post = get_object_or_404(Post, pk=pk)
     comments = post.comments_post.all()
-    context = {'post': post, 
-               'comments': comments}
+    context = {'post': post, 'comments': comments}
     return render(request, 'core/post_detail.html', context)
 
 
@@ -32,10 +38,10 @@ def get(self, request):
 #     template_name = 'core/post_detail.html'
 
 
-
 def profile(request):
     context = {'profile': Profile.objects.all()}
     return render(request, 'core/profile.html', context)
+
 
 @login_required
 def post_new(request):

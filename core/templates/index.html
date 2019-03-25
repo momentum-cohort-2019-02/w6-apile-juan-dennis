@@ -2,7 +2,7 @@
 {% block content %}
 <div class="">
 <h2> {{text}} </h2>
-{% for post in posts %}
+{% for post in post %}
 <div class="ma2 pa2 ba ">
     <div>
     <form action="{% url 'core-post-vote' pk=post.pk %}" method="POST">

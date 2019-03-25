@@ -24,9 +24,12 @@ urlpatterns = [
     path('', views.home, name='core-home'),
     path('profile/', views.profile, name='core-profile'),
     path('post/<int:pk>', views.post, name='core-post'),
-    path('accounts/', include('registration.backends.default.urls')),
+    path('accounts/', include('registration.backends.simple.urls')),
     path('createpost/', views.post_new, name='post_new'),
-    path('post/<int:pk>/createcomment/', views.create_comment, name='create_comment')
-
-] 
+    path('post/vote/<int:pk>', views.vote_on_post, name='core-post-vote'),
+    path(
+        'post/<int:pk>/createcomment/',
+        views.create_comment,
+        name='create_comment')
+]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
