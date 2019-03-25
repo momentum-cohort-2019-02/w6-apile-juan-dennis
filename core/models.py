@@ -68,8 +68,12 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.user_comment
+    
     class Meta:
         ordering = ['-time_of_comment']
+
+    def get_absolute_url(self):
+        return reverse("post_new", args=(self.pk, ))
 
     def get_absolute_url(self):
         return reverse("post_new", args=(self.pk, ))

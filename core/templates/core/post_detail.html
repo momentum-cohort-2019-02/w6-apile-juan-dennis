@@ -1,13 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
-   <div class="">
-        <div class="">
-            <div>
-                <h1><a >{{ post.title }}</a></h1>
-                <h5><a >{{ post.author.user.username }}</a></h5>
-            </div>
-            <p>{{ post.description }}</p>
-            <a class="" href="{{ post.date_posted }}"></a>
+<div class="page-header">
+    <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+</div>
+
+<div class="">
+    <div class="">
+        <div>
+            <h1><a>{{ post.title }}</a></h1>
+            <h5><a>{{ post.author.user.username }}</a></h5>
         </div>
 {% endblock content %}
 <div class="page-header">
@@ -20,14 +21,13 @@
             <h1><a>{{ post.title }}</a></h1>
             <h5><a>{{ post.author.user.username }}</a></h5>
         </div>
- <p>{{ post.description }}</p>
+        <p>{{ post.description }}</p>
         <a class="" href="{{ post.date_posted }}"></a>
         <P> Comments: </P>
         <a class="link black bg-animate hover-bg-blue mv3 ma2 pa2" href="{% url 'create_comment' pk=post.pk %}"> Post a Comment
         </a>
 
     </div>
-
     {% for comment in comments  %}
     <div class="ma2 pa2 ba ">
             <p>{{ comment.user_comment }}</p>
