@@ -49,6 +49,19 @@ class Profile(models.Model):
         return reverse("core-profile", args=(self.pk, ))
 
 
+class Vote(models.Model):
+    post = models.ForeignKey(
+        Post,
+        on_delete=models.CASCADE,
+        null=True,
+        related_name='my_post_votes')
+    profile = models.ForeignKey(
+        'Profile',
+        on_delete=models.CASCADE,
+        null=True,
+        related_name="my_profile_votes")
+
+
 class Comment(models.Model):
     user_comment = models.TextField(null=True, blank=True)
     time_of_comment = models.DateTimeField(auto_now_add=True)
@@ -65,6 +78,9 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.user_comment
+
+    class Meta:
+        ordering = ['-time_of_comment']
 
     class Meta:
         ordering = ['-time_of_comment']

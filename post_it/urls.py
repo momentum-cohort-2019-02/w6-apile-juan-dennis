@@ -26,7 +26,7 @@ urlpatterns = [
         'profile/<int:pk>',
         views.ProfileListView.as_view(),
         name='core-profile'),
-    path('post/<int:pk>', views.post, name='core-post'),
+    path('post/<int:pk>', views.PostDetailView.as_view, name='core-post'),
     path('post/vote/<int:pk>', views.vote_on_post, name='core-post-vote'),
     path('accounts/', include('registration.backends.simple.urls')),
 ]

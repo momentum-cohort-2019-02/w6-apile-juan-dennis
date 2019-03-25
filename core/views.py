@@ -13,21 +13,11 @@ def home(request):
     return render(request, 'core/index.html', context)
 
 
-# class HomeListView(generic.ListView):
-#     model = Post
-
-
-class ProfileListView(generic.ListView):
-    model = Profile
-
-
-# def profile(request):
-#     context = {'profile': Profile.objects.all()}
-#     return render(request, 'core/profile.html', context)
-
-
-class PostDetailView(generic.DetailView):
-    model = Post
+def post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    comments = post.comments_post.all()
+    context = {'post': post, 'comments': comments}
+    return render(request, 'core/post_detail.html', context)
 
 
 @require_http_methods(['POST'])
