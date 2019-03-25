@@ -18,8 +18,6 @@ class Post(models.Model):
     date_updated = models.DateTimeField(null=True, auto_now=True)
     url = models.URLField(max_length=250, null=True)
 
-    # vote = models.ManyToManyField('Profile', related_name='post_votes')
-
     def __str__(self):
         return self.title
 
@@ -62,7 +60,8 @@ class Comment(models.Model):
         related_name="comments_author",
         on_delete=models.PROTECT,
     )
-    vote = models.ManyToManyField('Profile', related_name='comment_votes')
+
+    # vote = models.ManyToManyField('Profile', related_name='comment_votes')
 
     def __str__(self):
         return self.user_comment
