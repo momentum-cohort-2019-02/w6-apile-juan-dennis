@@ -1,0 +1,17 @@
+body {
+    background-color: whitesmoke;
+    padding: 3%;
+    margin: 3%;
+    font-family: monospace;
+
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+}
+
+.login {
+    display: flex;
+    justify-content: flex-start;
+}

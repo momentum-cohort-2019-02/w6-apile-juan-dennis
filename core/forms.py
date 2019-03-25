@@ -1,1 +1,16 @@
-from .models import Vote
+from django import forms
+from .models import Post, Comment, Vote
+
+# from .models import models
+
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ['title', 'description']
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['author', 'user_comment']
