@@ -4,7 +4,7 @@
     {% if request.user.is_authenticated %}
 <h2>New Post</h2>
 <form method="POST">
-    <input type="text">
+    <!-- <input type="text"> -->
     {% csrf_token %}
     {{ form }}
     <button type="submit" class="save btn btn-default">Publish</button>

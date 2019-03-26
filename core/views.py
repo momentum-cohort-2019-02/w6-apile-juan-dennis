@@ -25,11 +25,6 @@ def get(self, request):
     return render(request.self.template_name, {'form': form})
 
 
-# class PostDetailView(generic.DetailView):
-#     model = Post
-#     template_name = 'core/post_detail.html'
-
-
 
 def profile(request):
     context = {'profile': Profile.objects.all()}
